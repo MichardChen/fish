@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<meta charset="UTF-8">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no"> 
+<title>惠车邦</title>
+<link rel="stylesheet"
+	href="https://cdn.bootcss.com/weui/1.1.2/style/weui.css" />
+<!--这是WEUI样式库文件自行官网下载使用-->
+<!--这是WEUI样式库文件自行官网下载使用-->
+<script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<style>
+	#container {width:100%; height: 180px; }  
+	#txt-color{color: #333333;font-size: 26px;}
+</style>
+<!--调用jQuery-->
+</head>
+<body>
+	<div class="bd" style="margin-top: 23px;margin-left: 10px;margin-right: 10px;">
+		<div class="weui_cells">
+			<div class="weui_cell_bd weui_cell_primary">
+				<div id="companyName" class="txt-color"></div>
+				<div id="locationText" class="txt-color"></div>
+				<div id="emailCode" class="txt-color"></div>
+				<div id="phone" class="txt-color"></div>
+			</div>
+			<div id="container"></div> 
+		</div>
+		<img alt="" id="serviceImg" width="100%">
+	</div>
+</body>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.7&key=39c9da3c4cfe10940be1b7bab3a845c5"></script> 
+<!--调用JSSDK-->
+<script>
+	window.onload = function() {
+		var map = new AMap.Map('container', {
+		       center:[118.24338197705003,24.674669004378305],
+		       zoom:11
+		    });
+		
+		var marker = new AMap.Marker({
+		    position: new AMap.LngLat(118.24338197705003,24.674669004378305),
+		    title: '厦门永翔群汽车贸易有限公司',
+		    icon: new AMap.Icon({  //复杂图标
+	            size: new AMap.Size(160, 129),//图标大小
+	            image: "https://www.huisouche8.com/framework/statics/images/bt_navigation.png", //大图地址
+	            imageOffset: new AMap.Pixel(0, 0)//相对于大图的取图位置
+	        })
+		});
+		marker.on('click',onMarkerClick);
+		map.add(marker);
+		$.ajax({
+			url:"https://www.huisouche8.com/framework/hrest/getData1",
+			type : "get",
+			dataType : "json",
+			async : true,
+			data : {},
+			success : function(data) {
+				if (data.code == "5600") {
+					var timestamp = data.data.mapInfo.timestamp;
+					var appId = data.data.mapInfo.appId;
+					var nonceStr = data.data.mapInfo.nonceStr;
+					var signature = data.data.mapInfo.signature;
+					var address = data.data.mapInfo.address;
+					var emailCode = data.data.mapInfo.emailCode;
+					var phone = data.data.mapInfo.phone;
+					var companyName = data.data.mapInfo.companyName;
+					$("#locationText").text("地址："+address);
+					$("#emailCode").text("邮编："+emailCode);
+					$("#phone").text("电话："+phone);
+					$("#companyName").text(companyName);
+					var customerServiceImg = data.data.mapInfo.customerServiceImg;
+					$("#serviceImg").attr("src",customerServiceImg);
+					//JSSDK配置参数 通过config接口注入权限验证配置
+					wx.config({
+						debug : false,
+						appId : appId,
+						timestamp : timestamp,
+						nonceStr : nonceStr,
+						signature : signature,
+						jsApiList : [ 'checkJsApi', 'onMenuShareTimeline',
+								'onMenuShareAppMessage', 'onMenuShareQQ',
+								'onMenuShareWeibo', 'hideMenuItems',
+								'showMenuItems', 'hideAllNonBaseMenuItem',
+								'showAllNonBaseMenuItem', 'translateVoice',
+								'startRecord', 'stopRecord', 'onRecordEnd',
+								'playVoice', 'pauseVoice', 'stopVoice',
+								'uploadVoice', 'downloadVoice', 'chooseImage',
+								'previewImage', 'uploadImage', 'downloadImage',
+								'getNetworkType', 'openLocation',
+								'getLocation', 'hideOptionMenu',
+								'showOptionMenu', 'closeWindow', 'scanQRCode',
+								'chooseWXPay', 'openProductSpecificView',
+								'addCard', 'chooseCard', 'openCard' ]
+					});
+					
+				}
+			},
+			error : function(msg) {
+				//console.log(msg);
+			}
+		})
+	}
+
+	function getData() {
+		wx.openLocation({
+			latitude : 24.674669004378305,
+			longitude : 118.24338197705003,
+			name : "厦门永翔群汽车贸易有限公司", //要写引号
+			address : "厦门市翔安区马巷镇巷西路611号", //要写引号
+			scale : 15,
+			infoUrl : "http://www.baidu.com" //要写引号
+		}); 
+	}
+
+	//通过ready接口处理成功验证，加载直接调用的程序放在ready中，这里目前为空
+	wx.ready(function() {
+		//getData();
+	});
+
+	 var onMarkerClick  =  function(e) {
+		 getData();
+	 } 
+	wx.error(function(res) {
+		//alert(res.errMsg);
+	});
+</script>
+</html>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.framework.dao.TQuestionAnswerDao">
+
+	<select id="queryObject" resultType="com.framework.entity.TQuestionAnswerEntity">
+		select * from t_question_answer where id = #{value}
+	</select>
+	
+	<select id="queryQuestionByCode" resultType="com.framework.entity.TQuestionAnswerEntity">
+		select * from t_question_answer where question = #{code} and flg=1 limit 1
+	</select>
+	
+	<select id="queryQuestionByCodeCount" resultType="int">
+		select count(*) from t_question_answer 
+		where 1=1 and flg=1
+		<if test="code != null and code != ''">
+			and question = #{code}
+		</if>
+	</select>
+
+	<select id="queryList" resultType="com.framework.entity.TQuestionAnswerEntity">
+		select * from t_question_answer 
+		where 1=1
+		<if test="date != null and date != ''">
+			and create_time like "%${date}%"
+		</if>
+		<if test="flg != null and flg != ''">
+			and flg=#{flg}
+		</if>
+		order by flg desc,update_time desc
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+	<select id="queryQAList" resultType="com.framework.entity.TQuestionAnswerEntity">
+		select * from t_question_answer where 1=1 and flg=1
+		<if test="typeCd != null and typeCd != ''">
+			and type_cd=#{typeCd}
+		</if>
+		<if test="flg != null and flg != ''">
+			and flg=#{flg}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from t_question_answer 
+		where 1=1
+		<if test="date != null and date != ''">
+			and create_time like "%${date}%"
+		</if>
+	</select>
+	<select id="queryQATotal" resultType="int">
+		select count(*) from t_question_answer where 1=1 and flg=1
+		<if test="typeCd != null and typeCd != ''">
+			and type_cd=#{typeCd}
+		</if>
+		<if test="flg != null and flg != ''">
+			and flg=#{flg}
+		</if>
+	</select>
+	 
+	<insert id="save" parameterType="com.framework.entity.TQuestionAnswerEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into t_question_answer
+		(
+			`question`, 
+			`answer`, 
+			`create_by`, 
+			`update_by`, 
+			`create_time`, 
+			`update_time`, 
+			`flg`,
+			`type_cd`
+		)
+		values
+		(
+			#{question}, 
+			#{answer}, 
+			#{createBy}, 
+			#{updateBy}, 
+			#{createTime}, 
+			#{updateTime}, 
+			#{flg},
+			#{typeCd}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.framework.entity.TQuestionAnswerEntity">
+		update t_question_answer 
+		<set>
+			<if test="question != null">`question` = #{question}, </if>
+			<if test="answer != null">`answer` = #{answer}, </if>
+			<if test="updateBy != null">`update_by` = #{updateBy}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}, </if>
+			<if test="flg != null">`flg` = #{flg},</if>
+			<if test="typeCd != null">`type_cd` = #{typeCd}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from t_question_answer where id = #{value}
+	</delete>
+	
+	<update id="deleteBatch">
+		update t_question_answer set flg=0 where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</update>
+
+</mapper>

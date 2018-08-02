@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.framework.dao.LocationCityDao">
+
+	<select id="queryObject" resultType="com.framework.entity.LocationCityEntity">
+		select * from location_city where id = #{value}
+	</select>
+
+	<select id="queryList" resultType="com.framework.entity.LocationCityEntity">
+		select * from location_city 
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	<select id="queryAllList" resultType="com.framework.entity.LocationCityEntity">
+		select * from location_city where pid=#{provinceId}
+	</select>
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from location_city 
+	</select>
+	 
+	<insert id="save" parameterType="com.framework.entity.LocationCityEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into location_city
+		(
+			`cityId`, 
+			`name`, 
+			`cityUpId`, 
+			`pid`, 
+			`cityPath`, 
+			`cityType`, 
+			`cityTypeNum`, 
+			`shortName`, 
+			`spell`, 
+			`areaId`, 
+			`postCode`
+		)
+		values
+		(
+			#{cityid}, 
+			#{name}, 
+			#{cityupid}, 
+			#{pid}, 
+			#{citypath}, 
+			#{citytype}, 
+			#{citytypenum}, 
+			#{shortname}, 
+			#{spell}, 
+			#{areaid}, 
+			#{postcode}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.framework.entity.LocationCityEntity">
+		update location_city 
+		<set>
+			<if test="cityid != null">`cityId` = #{cityid}, </if>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="cityupid != null">`cityUpId` = #{cityupid}, </if>
+			<if test="pid != null">`pid` = #{pid}, </if>
+			<if test="citypath != null">`cityPath` = #{citypath}, </if>
+			<if test="citytype != null">`cityType` = #{citytype}, </if>
+			<if test="citytypenum != null">`cityTypeNum` = #{citytypenum}, </if>
+			<if test="shortname != null">`shortName` = #{shortname}, </if>
+			<if test="spell != null">`spell` = #{spell}, </if>
+			<if test="areaid != null">`areaId` = #{areaid}, </if>
+			<if test="postcode != null">`postCode` = #{postcode}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from location_city where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from location_city where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

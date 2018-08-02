@@ -1,0 +1,41 @@
+<html ng-app="ionicApp">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>霈豊龙鱼芯片查询</title>
+        <link href="statics/ionic.css" rel="stylesheet">
+        <script src="statics/ionic.bundle.min.js"></script>
+        <script src="summernote/js/jquery.min.js"></script>
+        <script type="text/javascript">
+        		function search(){
+        			var url = "/fish/hrest/queryMessage";
+        			var code = $("#code").val();
+        			if(code==""){
+        				alert("请输入龙鱼芯片编号");
+        				return;
+        			}
+        			$.ajax({
+        				type: "POST",
+        			    url: url,
+        			    data: "code="+code,
+        			    success: function(r){
+        			    	var rr =eval('('+r+')');
+        			    	alert(rr.message);
+        				}
+        			});
+        		}
+        </script>
+    </head>
+    <body>
+    <div class="content has-header">
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="text" placeholder="龙鱼芯片编号" id="code">
+        </label>
+      </div>
+      <div class="padding">
+        <button class="button button-block button-positive" onclick="search()">查询</button>
+      </div>
+    </div>
+  </body>
+</html>

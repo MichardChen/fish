@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+#parse("sys/header.html")
+</head>
+<body>
+<div id="rrapp">
+	<div class="grid-btn">
+		<a class="btn btn-default" href="tquestionanswer_add.html">新增</a>
+		<button type="button"  class="btn btn-default" @click="update">修改</button>
+		<button type="button" class="btn btn-default" @click="del">删除</button>
+	</div>
+	<div class="grid-btn">
+		发布时间&nbsp;<input class="Wdate"  id="date" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',readOnly:true})"/>
+		<button type="button" class="btn btn-info" @click="search">查询</button>
+	</div>
+    <table id="jqGrid"></table>
+    <div id="jqGridPager"></div>
+</div>
+<script src="${rc.contextPath}/statics/My97DatePicker/WdatePicker.js?_${date.systemTime}"></script>
+<script src="${rc.contextPath}/js/tquestionanswer/tquestionanswer.js?_${date.systemTime}"></script>
+</body>
+</html>

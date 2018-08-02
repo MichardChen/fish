@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+#parse("sys/header.html")
+</head>
+<body>
+<div class="panel panel-default" id="rrapp" v-cloak>
+	<div class="panel-heading">{{title}}</div>
+	<form class="form-horizontal" style="width:850px;">
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">汽车ID</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.cartId" id="cartIds" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">是否标配</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.biaopei" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">长(mm)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.length" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">宽(mm)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.width" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">高(mm)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.height" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">轴距(mm)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.zhouju" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">前轮距(mm)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.qianlunju" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">后轮距(mm)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.houlunju" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">最小离地间隙(mm)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.lidijianxi" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">整车质量(kg)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.zhiliang" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">车身结构</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.cheshenjiegou" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">车门数(个)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.chemenshu" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">座位数(个)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.zuoweishu" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">油箱容积(L)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.youxiangrongji" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">行李厢容积(L)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.xinglirongji" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">发动机型号</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.fadongjixinghao" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">排量(mL)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.pailiang" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">进气形式</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.jinqixingshi" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">气缸排列形式</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.qgpxxingshi" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">气缸数(个)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.qigangshu" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">每缸气门数(个)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.qimenshu" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">缸径(mm)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.gangjing" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">行程(mm)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.xingcheng" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">最大马力(Ps)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.maxmali" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">最大功率(kW)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.maxgonglv" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">最大功率转速(rpm)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.maxgonglvzhuansu" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">最大扭矩(N・m)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.maxniuju" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">最大扭矩转速(rpm)</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.maxnjzhuansu" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">发动机特有技术</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.fadongjityjs" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">燃料形式</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.ranliaotype" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">燃油标号</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.ranliaocode" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">供油方式</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.gongyoutype" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">缸盖材料</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.ganggaicailiao" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">缸体材料</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.gangticailiao" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">环保标准</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.huanbobiaozhun" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">挡位个数</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.dangweigeshu" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">变速箱类型</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.biansuxiangtype" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">驱动方式</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.qudongtype" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">四驱形式</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.siqutype" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">中央差速器结构</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.chasuxiangjg" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">前悬架类型</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.qianxuanliangtype" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">后悬架类型</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.houxuanliangtype" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">助力类型</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.zhulitype" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">车体结构</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.chetijiegou" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">前制动器类型</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.qianzhidongqitype" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">后制动器类型</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.houzhidongqitype" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">驻车制动类型</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.zhuchezhidongtype" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">前轮胎规格</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.qianluntaiguige" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">后轮胎规格</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.houluntaiguige" placeholder=""/>
+		    </div>
+		   	<div class="col-sm-2 control-label">备胎规格</div>
+		   	<div class="col-sm-2">
+		      <input type="text" class="form-control" v-model="tCartParams.beitaiguige" placeholder=""/>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">主驾驶座安全气囊</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParams.zhujiashiqinang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">副驾驶座安全气囊</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParams.fujiashiqinang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">前排侧气囊</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParams.qiancepaiqinang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">后排侧气囊</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParams.houcepaiqinang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">前排头部气囊(气帘)</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParams.qiantouqinang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">后排头部气囊(气帘)</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParams.houtouqinang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">膝部气囊</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParams.qibuqinang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">胎压监测装置</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParams.taiyajianceqinang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">零胎压继续行驶</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParams.lingtaiyajxxs">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">安全带未系提示</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParams.anquandaiweixts">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">ISOFIX儿童座椅接口</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParams.ertongzuoyijiekou">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">发动机电子防盗</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParams.fadongjifangdao">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">车内中控锁</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParams.cheneizhognkongsuo">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">遥控钥匙</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.yaokongyaosi">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">无钥匙启动系统</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.wuyaosiqidong">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">无钥匙进入系统</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.wuyaosixitong">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">ABS防抱死</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.absbaosi">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">制动力分配(EBD/CBC等)</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.zhidonglifenpei">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">刹车辅助(EBA/BAS/BA等)</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.shachefuzhu">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">牵引力控制(ASR/TCS/TRC等)</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.qianyinlikongzhi">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">车身稳定控制(ESC/ESP/DSC等)</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.chenshenwending">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">上坡辅助</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.shangpofuzhu">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">自动驻车</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.zidongzhuche">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">陡坡缓降</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.duopohuanjiang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">可变悬架</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.kebianxuanlinag">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">空气悬架</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.kongqixuanliang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">电动天窗</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.diandongtianchuang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">全景天窗</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.quanjingtianchuan">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">运动外观套件</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.yundongwaiguantaojian">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">铝合金轮圈</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.lvjinjinlunquan">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">电动吸合门</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.diandongxihemen">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">侧滑门</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.cehuamen">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">电动后备厢</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.diandonghoubeixiang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">感应后备厢</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.ganyinghoubeixiang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">车顶行李架</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.chedingxinglijia">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">真皮方向盘</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.zhenpifangxiangpan">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">方向盘调节</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.fangxiangpantiaojie">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">方向盘电动调节</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.fangxiangpandiandong">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">多功能方向盘</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.duogongnengfangxiang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">方向盘换挡</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.fxphuandang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">方向盘加热</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.fxpjiare">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">定速巡航</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.dignweixunhang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">前/后驻车雷达</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.qianhouzhucheleida">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">倒车视频影像</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.daocheyingxiang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">行车电脑显示屏</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.xingchediannao">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">全液晶仪表盘</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.quanyejingyibiaopan">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">座椅材质</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.zuoyicaizhi">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">座椅高低调节</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.zuoyigaoditiaojie">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">腰部支撑调节</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.yaobuzhichengtiaojie">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">肩部支撑调节</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.juanbuzhichengtiaojie">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">主/副驾驶座电动调节</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.zhufujiashidiandong">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">后排座椅电动调节</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.houpaizuoyidiandong">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">前/后排座椅加热</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.qianhouzuoyijiare">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">GPS导航系统</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.gpsdaohang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">中控台彩色大屏</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.zhongkongtaicaise">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">蓝牙/车载电话</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.lanyachezai">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">外接音源接口</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.waijieyinyuan">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">多媒体系统</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.duomeitixitong">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">扬声器数量</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.yangshengqishu">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">近光灯</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.jinguangdeng">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">远光灯</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.yuanguangdeng">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">日间行车灯</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.rijianxingchedeng">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">自适应远近光</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.zishiyingyuanjindeng">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">自动头灯</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.zidongtoudeng">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">转向辅助灯</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.zxfuzhudeng">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">转向头灯</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.zxtoudeng">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">前雾灯</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.qianwudeng">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">大灯高度可调</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.dadenggaoduketiao">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">大灯清洗装置</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.dadengqixizhuangzhi">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">前电动车窗</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.qiandiandongchechuan">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">后电动车窗</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.houdiandongchechuan">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">车窗防夹手功能</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.chechuanfangjia">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">后视镜电动调节</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.houshijingdiandong">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">后视镜加热</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.houshijingjiare">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">内/外后视镜自动防眩目</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.neiwaihoushijing">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">后视镜电动折叠</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.houshijingdiandongzd">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">遮阳板化妆镜</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.zybhuazhuangjing">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">后雨刷</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.houyushua">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">感应雨刷</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.ganyingyushua">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">空调控制方式</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.kongtiaokongzhitype">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">后排独立空调</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.houpaidulikongtiao">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">后座出风口</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.houzuochufengkou">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">温度分区控制</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.wendufenqu">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">车内空气调节/花粉过滤</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.cheneikongqitj">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">车载冰箱</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.chezaibingxiang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">自动泊车入位自动泊车入位</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.zidongbocheruwei">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">发动机启停技术</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.fadongjiqidong">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">并线辅助</div>
+		   	<div class="col-sm-2">
+		   	<select  class="form-control" v-model="tCartParam2.bingxianfuzhu">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">车道偏离预警系统</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.chedaopianli">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">主动刹车/主动安全系统</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.zhudongshache">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">整体主动转向系统</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.zhengtizhudong">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">夜视系统</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.yeshixitong">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">中控液晶屏分屏显示</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.zhongkongyejing">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		   	<div class="col-sm-2 control-label">自适应巡航</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.zishiyingxunhang">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">全景摄像头</div>
+		   	<div class="col-sm-2">
+		   		<select  class="form-control" v-model="tCartParam2.quanjingshexiangtou">
+		   			<option value="0">否</option>
+		   			<option value="1">是</option>
+		   		</select>
+		    </div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-2 control-label"></div> 
+			<input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+			&nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="back" value="返回"/>
+		</div>
+	</form>
+</div>
+<!--<script src="${rc.contextPath}/summernote/js/jquery.min.js"></script>
+<script src="${rc.contextPath}/summernote/js/bootstrap.min.js"></script>
+<script src="${rc.contextPath}/summernote/dist/summernote.js"></script>
+<script src="${rc.contextPath}/summernote/dist/lang/summernote-zh-CN.js"></script>    中文
+<script src="${rc.contextPath}/js/sys/common.js"></script> -->
+<script src="${rc.contextPath}/js/params/params.js?_${date.systemTime}"></script>
+</body>
+</html>

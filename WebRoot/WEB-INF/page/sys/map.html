@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,user-scalable=0">
+<title></title>
+<link rel="stylesheet"
+	href="https://cdn.bootcss.com/weui/1.1.2/style/weui.css" />
+<!--这是WEUI样式库文件自行官网下载使用-->
+<link rel="stylesheet" href="weui/example.css" />
+<!--这是WEUI样式库文件自行官网下载使用-->
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<!--调用jQuery-->
+</head>
+<body>
+	<div class="bd">
+		<div class="weui_cells">
+			<div class="weui_cell_bd weui_cell_primary">
+				<span id="locationText"></span>
+			</div>
+			<div class="weui_cell">
+				<button class="weui_btn weui_btn_primary" id="openLocationId">openLocation</button>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<!--调用JSSDK-->
+<script>
+	window.onload = function() {
+		$.ajax({
+			url :   "https://www.huisouche8.com/framework/hrest/getData1",
+			type : "get",
+			dataType : "json",
+			async : true,
+			data : {},
+			success : function(data) {
+				if (data.code == REQUEST_OK) {
+					var timestamp = data.mapInfo.timestamp;
+					var appId = data.mapInfo.appId;
+					var nonceStr = data.mapInfo.nonceStr;
+					var signature = data.mapInfo.signature;
+					//JSSDK配置参数 通过config接口注入权限验证配置
+					wx.config({
+						debug : false,
+						appId : appId,
+						timestamp : timestamp,
+						nonceStr : nonceStr,
+						signature : signature,
+						jsApiList : [ 'checkJsApi', 'onMenuShareTimeline',
+								'onMenuShareAppMessage', 'onMenuShareQQ',
+								'onMenuShareWeibo', 'hideMenuItems',
+								'showMenuItems', 'hideAllNonBaseMenuItem',
+								'showAllNonBaseMenuItem', 'translateVoice',
+								'startRecord', 'stopRecord', 'onRecordEnd',
+								'playVoice', 'pauseVoice', 'stopVoice',
+								'uploadVoice', 'downloadVoice', 'chooseImage',
+								'previewImage', 'uploadImage', 'downloadImage',
+								'getNetworkType', 'openLocation',
+								'getLocation', 'hideOptionMenu',
+								'showOptionMenu', 'closeWindow', 'scanQRCode',
+								'chooseWXPay', 'openProductSpecificView',
+								'addCard', 'chooseCard', 'openCard' ]
+					});
+				}
+			},
+			error : function(msg) {
+				//console.log(msg);
+			}
+		})
+	}
+
+	function getData() {
+		wx.openLocation({
+			latitude : 39.914139,
+			longitude : 116.466881,
+			name : "国贸", //要写引号
+			address : "北京市朝阳区建国门外大街国贸桥", //要写引号
+			scale : 15,
+			infoUrl : "http://www.baidu.com" //要写引号
+		}); 
+	}
+
+	//通过ready接口处理成功验证，加载直接调用的程序放在ready中，这里目前为空
+	wx.ready(function() {
+		//getData();
+	});
+
+
+
+	document.querySelector('#openLocationId').onclick = function() {
+		getData();
+	};
+	
+	wx.error(function(res) {
+		//alert(res.errMsg);
+	});
+</script>
+</html>

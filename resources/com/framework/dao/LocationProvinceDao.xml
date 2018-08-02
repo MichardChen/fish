@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.framework.dao.LocationProvinceDao">
+
+	<select id="queryObject" resultType="com.framework.entity.LocationProvinceEntity">
+		select * from location_province where id = #{value}
+	</select>
+
+	<select id="queryList" resultType="com.framework.entity.LocationProvinceEntity">
+		select * from location_province 
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	<select id="queryAllList" resultType="com.framework.entity.LocationCityEntity">
+		select * from location_province
+	</select>
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from location_province 
+	</select>
+	 
+	<insert id="save" parameterType="com.framework.entity.LocationProvinceEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into location_province
+		(
+			`provinceId`, 
+			`name`, 
+			`provinceUpId`, 
+			`pid`, 
+			`provincePath`, 
+			`provinceType`, 
+			`provinceTypeNum`, 
+			`shortName`, 
+			`spell`, 
+			`areaId`, 
+			`postCode`
+		)
+		values
+		(
+			#{provinceid}, 
+			#{name}, 
+			#{provinceupid}, 
+			#{pid}, 
+			#{provincepath}, 
+			#{provincetype}, 
+			#{provincetypenum}, 
+			#{shortname}, 
+			#{spell}, 
+			#{areaid}, 
+			#{postcode}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.framework.entity.LocationProvinceEntity">
+		update location_province 
+		<set>
+			<if test="provinceid != null">`provinceId` = #{provinceid}, </if>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="provinceupid != null">`provinceUpId` = #{provinceupid}, </if>
+			<if test="pid != null">`pid` = #{pid}, </if>
+			<if test="provincepath != null">`provincePath` = #{provincepath}, </if>
+			<if test="provincetype != null">`provinceType` = #{provincetype}, </if>
+			<if test="provincetypenum != null">`provinceTypeNum` = #{provincetypenum}, </if>
+			<if test="shortname != null">`shortName` = #{shortname}, </if>
+			<if test="spell != null">`spell` = #{spell}, </if>
+			<if test="areaid != null">`areaId` = #{areaid}, </if>
+			<if test="postcode != null">`postCode` = #{postcode}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from location_province where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from location_province where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>
