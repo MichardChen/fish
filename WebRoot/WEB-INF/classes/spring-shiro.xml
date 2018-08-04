@@ -49,6 +49,7 @@
 	        	/hrest/**=anon
 	        	/pcrest/**=anon
 	        	/search.html=anon
+	        	/summernote/**=anon
 	        	/common/**=anon
 	        	/login.html=anon
 	        	/sys/login=anon

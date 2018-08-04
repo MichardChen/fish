@@ -18,9 +18,8 @@
         				type: "POST",
         			    url: url,
         			    data: "code="+code,
-        			    success: function(r){
-        			    	var rr =eval('('+r+')');
-        			    	alert(rr.message);
+        			    success: function(json){
+        			    	alert(json);
         				}
         			});
         		}

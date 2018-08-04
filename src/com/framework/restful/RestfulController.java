@@ -12,4 +12,10 @@ public class RestfulController extends AbstractController{
 		response.setContentType("text/html;charset=utf-8");
 		response.getWriter().print(data.toString());
 	}
+	
+	public void renderJson1(ReturnData data,HttpServletResponse response) throws Exception{
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		response.setContentType("text/html;charset=utf-8");
+		response.getWriter().print(data.getMessage());
+	}
 }

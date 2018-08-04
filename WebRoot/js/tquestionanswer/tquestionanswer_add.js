@@ -19,7 +19,7 @@ var vm = new Vue({
 		},
 		saveOrUpdate: function (event) {
 			if($("#question").val() == ""){
-				alert("请输入芯片编号");
+				alert("请输入芯片号码");
 				return;
 			}
 			if($("#answer").val() == ""){
