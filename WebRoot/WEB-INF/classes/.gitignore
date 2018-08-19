@@ -1,0 +1,12 @@
+/com/
+/config.properties
+/db.properties
+/generator.properties
+/log4j.properties
+/mybatis.xml
+/spring-framework.xml
+/spring-jdbc.xml
+/spring-mvc.xml
+/spring-scheduler.xml
+/spring-shiro.xml
+/template/
